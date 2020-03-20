@@ -14,6 +14,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/DmitrySalnik0v/TicTacToe.git" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1YCdUoc3V84Z4sSykoL0mMvMlbz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,7 +38,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -65,7 +75,22 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Notifications" timestamp="1584733200036">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1584733200036" />
     <state x="504" y="345" key="#com.intellij.ide.util.MemberChooser" timestamp="1582456025249">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -122,20 +147,26 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2505" height="476" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1584203521196" />
-    <state x="420" y="7" key="SettingsEditor" timestamp="1584176639929">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="504" y="8" key="SettingsEditor" timestamp="1584733303628">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="420" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1584176639929" />
+    <state x="504" y="8" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584733303628" />
     <state x="672" y="257" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1583056405222" />
-    <state x="391" y="482" key="com.intellij.ide.util.TipDialog" timestamp="1584203539921">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="293" y="358" key="com.intellij.ide.util.TipDialog" timestamp="1584733168967">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="244" y="296" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1584176417044" />
+    <state x="293" y="358" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584733168967" />
     <state x="391" y="482" key="com.intellij.ide.util.TipDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1584203539921" />
     <state x="396" y="577" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582456066949">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="396" y="577" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.2560.1400@0.0.2560.1400" timestamp="1582456066949" />
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584733186838">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="769" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584733186838" />
     <state x="550" y="233" key="new project wizard" timestamp="1582908856729">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
