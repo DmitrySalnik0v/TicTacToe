@@ -17,7 +17,22 @@ public class Main {
             } while (command < 1 || command > 3);
             if (command == 3) break;
             if (command == 1) {
-                Game game = new Game();
+                Scanner in = new Scanner(System.in);
+                String select1, select2;
+                do {
+                    System.out.println("Select Player 1: man/bot");
+                    select1 = in.nextLine();
+                    System.out.println("Select Player 2: man/bot");
+                    select2 = in.nextLine();
+                } while (!(select1.equals("man") || select1.equals("bot")) || !(select2.equals("man") || select2.equals("bot")));
+                Player playerX, playerO;
+                if (select1.equals("man")) {
+                    playerX = new HumanPlayer();
+                } else playerX = new BotPlayer();
+                if (select2.equals("man")) {
+                    playerO = new HumanPlayer();
+                } else playerO = new BotPlayer();
+                Game game = new Game(playerX, playerO);
                 int stat = game.Start();
                 Game.SetStats(stat);
             }
