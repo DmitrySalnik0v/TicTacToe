@@ -33,6 +33,8 @@ public class Main {
                     playerO = new HumanPlayer();
                 } else playerO = new BotPlayer();
                 Game game = new Game(playerX, playerO);
+                GameObserver gameObserver = new GameObserver();
+                game.addPropertyChangeListener(gameObserver);
                 int stat = game.Start();
                 Game.SetStats(stat);
             }
@@ -48,5 +50,11 @@ enum State {
     Clear,
     X,
     O
+}
+
+enum Status {
+    CREATED,
+    STARTED,
+    FINISHED
 }
 

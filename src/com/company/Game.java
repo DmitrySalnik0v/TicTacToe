@@ -1,5 +1,7 @@
 package com.company;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Scanner;
 
 class Game {
@@ -8,6 +10,10 @@ class Game {
     public int GetSize() {
         return size;
     }
+
+    private PropertyChangeSupport support;
+
+    private Status gameStatus;
 
     private State[][] map = new State[size][size];
 
@@ -28,8 +34,19 @@ class Game {
                 map[i][j] = State.Clear;
             }
         }
+        support = new PropertyChangeSupport(this);
         this.playerX = playerX;
         this.playerO = playerO;
+        support.firePropertyChange("gameStatus",gameStatus, Status.CREATED);
+        gameStatus = Status.CREATED;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        support.addPropertyChangeListener(pcl);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        support.removePropertyChangeListener(pcl);
     }
 
     public static void SetStats(int stat) {
@@ -50,6 +67,8 @@ class Game {
     Player playerO;
 
     public int Start() {
+        support.firePropertyChange("gameStatus",gameStatus, Status.STARTED);
+        gameStatus = Status.STARTED;
         int stat;
         System.out.println("Game started!!!");
         ShowField();
@@ -86,6 +105,8 @@ class Game {
                 break;
             }
         } while (true);
+        support.firePropertyChange("gameStatus",gameStatus, Status.FINISHED);
+        gameStatus = Status.FINISHED;
         return stat;
     }
 
