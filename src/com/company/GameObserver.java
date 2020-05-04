@@ -18,6 +18,26 @@ public class GameObserver implements Observer {
             preparedStatement.setString(2, game.getGameStatus().toString());
             preparedStatement.setString(3, game.getGameStatus().toString());
             preparedStatement.executeUpdate();
+            if (game.getGameStatus() == Status.FINISHED) {
+                String sqlStat = "INSERT game_stats(game_id, playerX_win, playerO_win) VALUES (?,?,?)";
+                preparedStatement = connection.prepareStatement(sqlStat);
+                preparedStatement.setInt(1, game.getId());
+                switch (game.getGameStat()) {
+                    case 0:
+                        preparedStatement.setString(2, "win");
+                        preparedStatement.setString(3, "lose");
+                        break;
+                    case 1:
+                        preparedStatement.setString(2, "draw");
+                        preparedStatement.setString(3, "draw");
+                        break;
+                    case 2:
+                        preparedStatement.setString(2, "lose");
+                        preparedStatement.setString(3, "win");
+                        break;
+                }
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -41,9 +41,36 @@ class Game implements Observed {
 
     private static int[] stats = new int[3];
 
+    private int gameStat;
+
+    public int getGameStat() {
+        return gameStat;
+    }
+
+    private void setGameStat(int gameStat) {
+        this.gameStat = gameStat;
+    }
+
     public static void GetStats() {
-        System.out.println("Statistics: Player X wins, Draws, Player O wins");
-        System.out.println(stats[0] + "   " + stats[1] + "    " + stats[2]);
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "ыйгфвцшзу");
+            String sql = "SELECT * FROM game_stats";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            System.out.println("Статистика игр:");
+            System.out.println("id\tИгрокX\tИгрокO");
+            while (resultSet.next()) {
+                int idStat = resultSet.getInt(1);
+                String playerXStat = resultSet.getString(2);
+                String playerOStat = resultSet.getString(3);
+                System.out.println(idStat + " " + playerXStat + " " + playerOStat);
+            }
+            System.out.println();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Statistics: Player X wins, Draws, Player O wins");
+            System.out.println(stats[0] + "   " + stats[1] + "    " + stats[2]);
+        }
     }
 
     public Game(Player playerX, Player playerO) {
@@ -64,7 +91,7 @@ class Game implements Observed {
             sql = "SELECT id FROM game ORDER BY id DESC LIMIT 1";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 setId(resultSet.getInt(1));
             }
         } catch (SQLException throwables) {
@@ -130,12 +157,13 @@ class Game implements Observed {
                 break;
             }
         } while (true);
+        setGameStat(stat);
         gameStatus = Status.FINISHED;
         notifyObservers();
         return stat;
     }
 
-    public void ShowField() {
+    private void ShowField() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (map[i][j] == State.Clear) {
@@ -149,7 +177,7 @@ class Game implements Observed {
         System.out.println("//////////");
     }
 
-    public boolean IsMapEnded() {
+    private boolean IsMapEnded() {
         boolean isEnded = true;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -161,7 +189,7 @@ class Game implements Observed {
         return isEnded;
     }
 
-    public State CheckGameState() {
+    private State CheckGameState() {
         State winner = State.Clear;
         int equal = 0;
         for (int i = 0; i < size; i++) {
@@ -219,7 +247,7 @@ class Game implements Observed {
         }
     }
 
-    public boolean ChangeMap(Point point, State sender) {
+    private boolean ChangeMap(Point point, State sender) {
         boolean changeConfirmed = true;
         if (point.GetX() < 0 || point.GetX() > GetSize() - 1 || point.GetY() < 0 || point.GetY() > GetSize() - 1 ||
                 GetMap()[point.GetX()][point.GetY()] != State.Clear) {
@@ -230,7 +258,7 @@ class Game implements Observed {
         return changeConfirmed;
     }
 
-    public void Clear() {
+    private void Clear() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 map[i][j] = State.Clear;
