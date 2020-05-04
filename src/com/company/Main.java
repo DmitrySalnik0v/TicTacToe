@@ -1,5 +1,8 @@
 package com.company;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -33,14 +36,12 @@ public class Main {
                     playerO = new HumanPlayer();
                 } else playerO = new BotPlayer();
                 Game game = new Game(playerX, playerO);
-                GameObserver gameObserver = new GameObserver();
-                game.addPropertyChangeListener(gameObserver);
+                game.addObserver(new GameObserver());
                 int stat = game.Start();
                 Game.SetStats(stat);
             }
             if (command == 2) {
                 Game.GetStats();
-
             }
         }
     }

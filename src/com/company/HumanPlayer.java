@@ -14,4 +14,9 @@ class HumanPlayer implements Player {
         } while (x < 0 || x > game.GetSize() - 1 || y < 0 || y > game.GetSize() - 1 || game.GetMap()[x][y] != State.Clear);
         return new Point(x, y);
     }
+
+    @Override
+    public String GetName() {
+        return "man";
+    }
 }

@@ -10,4 +10,9 @@ class BotPlayer implements Player {
         }
         return new Point(x, y);
     }
+
+    @Override
+    public String GetName() {
+        return "bot";
+    }
 }
