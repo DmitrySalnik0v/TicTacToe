@@ -10,7 +10,7 @@ public class GameObserver implements Observer {
     public void handleEvent(Game game) {
         try {
             String username = "root";
-            String password = "ыйгфвцшзу";
+            String password = "1234";
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", username, password);
             String sql = "INSERT game_status_log(game_id,status) VALUES (?,?) ON DUPLICATE KEY UPDATE status = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);

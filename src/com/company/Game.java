@@ -53,7 +53,7 @@ class Game implements Observed {
 
     public static void GetStats() {
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "ыйгфвцшзу");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "1234");
             String sql = "SELECT * FROM game_stats";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -82,7 +82,7 @@ class Game implements Observed {
         this.playerX = playerX;
         this.playerO = playerO;
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "ыйгфвцшзу");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "1234");
             String sql = "INSERT game(playerX_name,playerO_name) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, this.playerX.GetName());
