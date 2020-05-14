@@ -36,7 +36,6 @@ public class Main {
                     playerO = new HumanPlayer();
                 } else playerO = new BotPlayer();
                 Game game = new Game(playerX, playerO);
-                game.addObserver(new GameObserver());
                 int stat = game.Start();
                 Game.SetStats(stat);
             }

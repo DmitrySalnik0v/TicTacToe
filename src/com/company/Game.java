@@ -1,11 +1,8 @@
 package com.company;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 class Game implements Observed {
 
@@ -17,8 +14,19 @@ class Game implements Observed {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    private Player playerX;
+    private Player playerO;
+
+    public Player getPlayerX() {
+        return playerX;
+    }
+
+    public Player getPlayerO() {
+        return playerO;
     }
 
     static private int size = 3;
@@ -81,22 +89,7 @@ class Game implements Observed {
         }
         this.playerX = playerX;
         this.playerO = playerO;
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", "root", "1234");
-            String sql = "INSERT game(playerX_name,playerO_name) VALUES (?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, this.playerX.GetName());
-            preparedStatement.setString(2, this.playerO.GetName());
-            preparedStatement.executeUpdate();
-            sql = "SELECT id FROM game ORDER BY id DESC LIMIT 1";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()) {
-                setId(resultSet.getInt(1));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        this.addObserver(new GameObserver());
         gameStatus = Status.CREATED;
         notifyObservers();
     }
@@ -114,9 +107,6 @@ class Game implements Observed {
                 break;
         }
     }
-
-    private Player playerX;
-    private Player playerO;
 
     public int Start() {
         gameStatus = Status.STARTED;

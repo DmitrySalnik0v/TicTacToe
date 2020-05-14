@@ -1,7 +1,5 @@
 package com.company;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.sql.*;
 
 public class GameObserver implements Observer {
@@ -12,6 +10,19 @@ public class GameObserver implements Observer {
             String username = "root";
             String password = "1234";
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/tictactoedb?serverTimezone=Europe/Minsk&useSSL=false", username, password);
+            if (game.getGameStatus() == Status.CREATED) {
+                String sql = "INSERT game(playerX_name,playerO_name) VALUES (?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, game.getPlayerX().GetName());
+                preparedStatement.setString(2, game.getPlayerO().GetName());
+                preparedStatement.executeUpdate();
+                sql = "SELECT id FROM game ORDER BY id DESC LIMIT 1";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+                if (resultSet.next()) {
+                    game.setId(resultSet.getInt(1));
+                }
+            }
             String sql = "INSERT game_status_log(game_id,status) VALUES (?,?) ON DUPLICATE KEY UPDATE status = (?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, game.getId());
